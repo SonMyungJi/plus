@@ -39,11 +39,11 @@ public class UserService {
         String password = requestDto.getPassword();
 
         User user = userRepository.findByNickname(nickname).orElseThrow(
-                () -> new IllegalArgumentException("등록된 사용자가 없습니다.")
+                () -> new IllegalArgumentException("닉네임 또는 패스워드를 확인해주세요")
         );
 
         if(!passwordEncoder.matches(password, user.getPassword())) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+            throw new IllegalArgumentException("닉네임 또는 패스워드를 확인해주세요");
         }
 
         String accessToken = jwtUtil.createToken(user.getNickname());
