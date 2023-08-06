@@ -1,8 +1,10 @@
 package com.sparta.plus.controller;
 
 import com.sparta.plus.dto.ApiResponseDto;
+import com.sparta.plus.dto.LoginRequestDto;
 import com.sparta.plus.dto.SignupRequestDto;
 import com.sparta.plus.service.UserService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,5 +26,11 @@ public class UserController {
         userService.signup(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ApiResponseDto("회원가입 되었습니다", HttpStatus.CREATED.value()));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponseDto> Login(@RequestBody LoginRequestDto requestDto, HttpServletResponse response) {
+        userService.login(requestDto, response);
+        return ResponseEntity.ok().body(new ApiResponseDto("로그인 성공", HttpStatus.OK.value()));
     }
 }
