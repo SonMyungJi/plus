@@ -3,7 +3,7 @@ package com.sparta.plus.controller;
 import com.sparta.plus.dto.ApiResponseDto;
 import com.sparta.plus.dto.LoginRequestDto;
 import com.sparta.plus.dto.SignupRequestDto;
-import com.sparta.plus.service.UserService;
+import com.sparta.plus.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponseDto> Signup(@Valid @RequestBody SignupRequestDto requestDto) {
